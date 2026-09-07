@@ -1,26 +1,353 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+* {
+  box-sizing: border-box;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #111;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+button {
+  font: inherit;
+}
+
+.game {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #111;
+}
+
+/* =========================
+   만년과장 배경
+========================= */
+
+.npc-background {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.npc-background img {
+  display: block;
+  width: auto;
+  height: 80vh;
+  max-width: 80vw;
+  object-fit: contain;
+}
+
+/* =========================
+   게임 영역
+========================= */
+
+.game__inner {
+  position: relative;
+  z-index: 10;
+
+  width: min(1100px, calc(100% - 40px));
+  min-height: 100vh;
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  padding-bottom: 50px;
+}
+
+/* =========================
+   타이틀
+========================= */
+
+.game__title {
+  position: absolute;
+  top: 30px;
+  left: 0;
+
+  margin: 0;
+
+  font-size: 32px;
+  letter-spacing: 4px;
+}
+
+/* =========================
+   대화창
+========================= */
+
+.dialog {
+  display: flex;
+  align-items: stretch;
+
+  width: 100%;
+  min-height: 190px;
+
+  background: rgba(0, 0, 0, 0.9);
+
+  border: 2px solid #fff;
+}
+
+/* =========================
+   플레이어 얼굴
+========================= */
+
+.dialog__player {
+  flex: 0 0 300px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-right: 2px solid #fff;
+}
+
+.dialog__player img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  object-fit: contain;
+  object-position: bottom center;
+}
+
+/* =========================
+   대화 내용
+========================= */
+
+.dialog__content {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding: 25px 30px;
+}
+
+.dialog__name {
+  margin-bottom: 12px;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.dialog__text {
+  margin: 0 0 20px;
+
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* =========================
+   버튼
+========================= */
+
+.game__button {
+  margin-top: auto;
+
+  padding: 10px 25px;
+
+  border: 2px solid #fff;
+
+  background: #fff;
+  color: #111;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.game__button:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* =========================
+   강도 게이지
+========================= */
+
+.power {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.power__value {
+  margin-bottom: 8px;
+
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.power__bar {
+  position: relative;
+
+  width: 100%;
+  height: 24px;
+
+  border: 2px solid #fff;
+
+  background: #222;
+}
+
+.power__fill {
+  height: 100%;
+
+  background: #fff;
+
+  transition: width 0.03s linear;
+}
+
+.power__range {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 6px;
+
+  font-size: 12px;
+}
+
+/* =========================
+   메뉴 선택 게임
+========================= */
+
+.menu-game {
+  width: 100%;
+}
+
+.menu-game__viewport {
+  position: relative;
+
+  width: 30%;
+  height: 80px;
+
+  overflow: hidden;
+
+  border: 2px solid #fff;
+
+  background: #111;
+}
+
+.menu-game__track {
+  display: flex;
+
+  width: max-content;
+  height: 100%;
+
+  transition: transform 0.03s linear;
+}
+
+.menu-game__item {
+  flex: 0 0 180px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* 가운데 선택선 */
+
+.menu-game__center {
+  position: absolute;
+
+  top: 0;
+  left: 50%;
+
+  width: 4px;
+  height: 100%;
+
+  transform: translateX(-50%);
+
+  background: red;
+
+  pointer-events: none;
+}
+
+.menu-game .game__button {
+  margin-top: 15px;
+}
+
+/* =========================
+   결과
+========================= */
+
+.result {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 20px;
+}
+
+.result span {
+  font-size: 14px;
+}
+
+.result strong {
+  font-size: 28px;
+}
+
+/* =========================
+   모바일
+========================= */
+
+@media (max-width: 700px) {
+  .game__inner {
+    width: calc(100% - 20px);
+    padding-bottom: 20px;
+  }
+
+  .npc-background img {
+    height: 60vh;
+    max-width: 95vw;
+  }
+
+  .dialog {
+    min-height: 160px;
+  }
+
+  .dialog__player {
+    flex: 0 0 100px;
+  }
+
+  .dialog__player img {
+    height: 130px;
+  }
+
+  .dialog__content {
+    padding: 15px;
+  }
+
+  .dialog__name {
+    font-size: 16px;
+  }
+
+  .dialog__text {
+    font-size: 15px;
+  }
+
+  .game__title {
+    top: 15px;
+    font-size: 24px;
+  }
 }
