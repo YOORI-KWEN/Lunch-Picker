@@ -1,0 +1,12 @@
+[33m8e44e5e[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m Initial commit
+ app/globals.css                             | 363 [32m+++++++++++++++++[m[31m-[m
+ app/page.tsx                                | 561 [32m+++++++++++++++++++++++++[m[31m---[m
+ public/images/character/angry.png           | Bin [31m0[m -> [32m322434[m bytes
+ public/images/character/emotionless.png     | Bin [31m0[m -> [32m312910[m bytes
+ public/images/character/npc_emotionless.png | Bin [31m0[m -> [32m1954376[m bytes
+ public/images/character/npc_smiling.png     | Bin [31m0[m -> [32m2009652[m bytes
+ public/images/character/npc_soulless.png    | Bin [31m0[m -> [32m1955644[m bytes
+ public/images/character/npc_surprise.png    | Bin [31m0[m -> [32m2006537[m bytes
+ public/images/character/smiling.png         | Bin [31m0[m -> [32m324552[m bytes
+ public/images/character/soulless.png        | Bin [31m0[m -> [32m317742[m bytes
+ 10 files changed, 845 insertions(+), 79 deletions(-)

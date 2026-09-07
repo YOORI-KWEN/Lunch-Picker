@@ -282,12 +282,12 @@ const selectMenu = () => {
     }
 
     if (selectedPower <= 45) {
-      return "나: 김치찌개 먹을래요?";
+      return "나: 음..글쎄요.";
     }
 
     if (selectedPower <= 70) {
       if (selectedMenu) {
-        return `나: ${selectedMenu} 먹을게요.`;
+        return `나: 저희 ${selectedMenu} 먹어요.`;
       }
 
       return "나: 메뉴를 골라볼게요.";
